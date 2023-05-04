@@ -1,13 +1,14 @@
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { ApolloClient, InMemoryCache, createHttpLink } from "@apollo/client";
-import { LOGIN_MUTATION } from "@/utils/gql.js";
-let client = null;
+import { LOGIN_MUTATION } from "@/utils/gql.ts";
 
+let client = null;
+const gql_uri = process.env.GQL_SERVER;
 const getClient = () => {
   client = new ApolloClient({
     link: createHttpLink({
-      uri: "https://moonshot.hannah-log.site/graphql",
+      uri: gql_uri,
     }),
     cache: new InMemoryCache(),
   });

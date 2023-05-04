@@ -1,6 +1,6 @@
 import { gql } from "@apollo/client";
 
-export const LOGIN_MUTATION = (credential: { email: string; password: string }) => {
+const LOGIN_MUTATION = (credential: { email: string; password: string }) => {
   return gql`
   mutation {
     login(loginUserRequest: {
@@ -13,18 +13,38 @@ export const LOGIN_MUTATION = (credential: { email: string; password: string }) 
   }
 `;
 };
-
-export const gql_type = (type: string, gqlName: string, response: string) => {
+const SAVE_PRODUCT = (name: string, price: number, description: string, categoryId: number, imageUrl: string, isMain: boolean) => {
   return gql`
-    ${type}{
-      ${gqlName}{
-        ${response}
+    mutation {
+      saveProduct(request: {
+          name: "${name}"
+          price: ${price}
+          description: "${description}"
+          categoryId: ${categoryId}
+          productImages: {
+            imageUrl:"${imageUrl}"
+            isMain:${isMain}
+          }
+        }) {
+        id
+        name
+        price
+        description
+        category {
+          id
+          name
+        }
+        productImages {
+          id
+          imageUrl
+          isMain
+        }
       }
     }
-    `;
+  `;
 };
 
-export const GET_PRODUCTS = gql`
+const GET_PRODUCTS = gql`
   query {
     getProducts {
       id
@@ -37,3 +57,5 @@ export const GET_PRODUCTS = gql`
     }
   }
 `;
+
+export { LOGIN_MUTATION, GET_PRODUCTS, SAVE_PRODUCT };

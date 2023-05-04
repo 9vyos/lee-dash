@@ -23,9 +23,6 @@ function classNames(...classes) {
 }
 
 const Example = async () => {
-  let session = await getServerSession(authOptions);
-  console.log(session);
-
   return (
     <>
       <div>
@@ -63,6 +60,7 @@ const Example = async () => {
                   <Link href="/login" className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50">
                     로그인
                   </Link>
+
                   <a href="#" className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-50"></a>
                 </li>
               </ul>

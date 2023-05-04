@@ -1,21 +1,40 @@
 import { gql } from "@apollo/client";
 import { getClient } from "@/lib/apollo-client";
 import Link from "next/link";
-import { GET_PRODUCTS } from "@/utils/gql.js";
+import { GET_PRODUCTS } from "@/utils/gql";
+import Image from "next/image";
+
+interface item {
+  id: number;
+  name: string;
+  price: number;
+  description: string;
+  category: {
+    id: number;
+    name: string;
+    createdAt: Date;
+    updatedAt: Date;
+  };
+  productImages: {
+    id: number;
+    imageUrl: string;
+    isMain: boolean;
+  };
+}
 
 const page = async () => {
-  console.log(GET_PRODUCTS);
   const client = getClient();
   const { data } = await client.query({ query: GET_PRODUCTS });
   return (
     <div>
       <Link href={`/product/edit`}>상품 등록하기</Link>
-      {data.getProducts.map((item, i) => (
-        <Link href={`/product/${item.id}`}>
+      {data.getProducts.map((item: item, i: number) => (
+        <Link href={`/product/${item.id}`} key={i}>
           <h1>{item.name}</h1>
           <p>{item.description}</p>
           <p>{item.category.name}</p>
           <p>{item.price}원</p>
+          <Image src={item.productImages?.imageUrl} alt="" />
         </Link>
       ))}
     </div>

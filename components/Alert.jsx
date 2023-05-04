@@ -1,5 +1,5 @@
-'use client'
-import { CheckCircleIcon, XMarkIcon } from '@heroicons/react/20/solid'
+"use client";
+import { CheckCircleIcon, XMarkIcon } from "@heroicons/react/20/solid";
 
 export default function Example() {
   return (
@@ -24,5 +24,5 @@ export default function Example() {
         </div>
       </div>
     </div>
-  )
+  );
 }

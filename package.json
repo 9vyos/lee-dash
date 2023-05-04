@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@apollo/client": "^3.7.12",
+    "@editorjs/editorjs": "^2.26.5",
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.17",
     "@types/node": "18.15.11",
